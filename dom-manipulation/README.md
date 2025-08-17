@@ -61,3 +61,25 @@ Enhance the “Dynamic Quote Generator” by implementing a **dynamic category f
 - JavaScript (DOM Manipulation, Web Storage API)  
 
 ## 📂 Project Structure  
+
+
+# Dynamic Quote Generator with Sync
+
+## Objective
+Enhance the Quote Generator by syncing local data with a server and handling conflicts.
+
+## Features
+- Local storage for quotes
+- Syncs with mock server (JSONPlaceholder)
+- Conflict resolution (server takes precedence)
+- Periodic updates every 15s
+- UI status messages
+
+## How to Run
+1. Open `index.html` in a browser.
+2. Add quotes locally.
+3. Wait for sync — server data will overwrite conflicts.
+
+## Repo
+GitHub: `alx_fe_javascript`
+Folder: `dom-manipulation-sync`
