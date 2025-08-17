@@ -33,7 +33,11 @@
   <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
   <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
   <button id="addQuote">Add Quote</button>
-
+  
+<!-- Import/Export Section -->
+  <h2>Import / Export Quotes</h2>
+  <button id="exportJson">Export Quotes (JSON)</button>
+  <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
   <script src="script.js"></script>
 </body>
 </html>

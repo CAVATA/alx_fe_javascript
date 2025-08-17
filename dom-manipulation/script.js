@@ -77,10 +77,6 @@ function addQuote() {
   alert("New quote added successfully!");
 }
 
-// Event Listeners
-newQuoteBtn.addEventListener("click", showRandomQuote);
-addQuoteBtn.addEventListener("click", addQuote);
-categoryFilter.addEventListener("change", showRandomQuote);
 
 // Initialize categories on page load
 updateCategoryFilter();
@@ -91,3 +87,53 @@ updateCategoryFilter();
  quoteDisplay.innerHTML = `"${newText}" <br> 
     <span class="quote-category">— ${newCategory}</span>`;
 
+   // Export Quotes as JSON
+function exportToJsonFile() {
+  const dataStr = JSON.stringify(quotes, null, 2);
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "quotes.json";
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+// Import Quotes from JSON
+function importFromJsonFile(event) {
+  const fileReader = new FileReader();
+  fileReader.onload = function(e) {
+    try {
+      const importedQuotes = JSON.parse(e.target.result);
+      if (Array.isArray(importedQuotes)) {
+        quotes.push(...importedQuotes);
+        saveQuotes();
+        updateCategoryFilter();
+        alert("Quotes imported successfully!");
+      } else {
+        alert("Invalid JSON format!");
+      }
+    } catch (err) {
+      alert("Error reading JSON file!");
+    }
+  };
+  fileReader.readAsText(event.target.files[0]);
+}
+
+// === Event Listeners ===
+newQuoteBtn.addEventListener("click", showRandomQuote);
+addQuoteBtn.addEventListener("click", addQuote);
+categoryFilter.addEventListener("change", showRandomQuote);
+exportBtn.addEventListener("click", exportToJsonFile); 
+
+// === Event Listeners ===
+newQuoteBtn.addEventListener("click", showRandomQuote);
+addQuoteBtn.addEventListener("click", addQuote);
+categoryFilter.addEventListener("change", showRandomQuote);
+exportBtn.addEventListener("click", exportToJsonFile);
+
+// Initialize
+updateCategoryFilter();
+loadLastQuote(); // Load last viewed quote (sessionStorage)
