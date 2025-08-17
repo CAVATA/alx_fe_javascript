@@ -84,3 +84,10 @@ categoryFilter.addEventListener("change", showRandomQuote);
 
 // Initialize categories on page load
 updateCategoryFilter();
+
+ alert("New quote added successfully!");
+
+
+ quoteDisplay.innerHTML = `"${newText}" <br> 
+    <span class="quote-category">— ${newCategory}</span>`;
+
